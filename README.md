@@ -1,6 +1,6 @@
 
 
-This is an demo of doing Shareholding Breakthrough with Distributed open-source Graph Database: Nebula Graph.
+This is a demo of Shareholding Breakthrough with Distributed open-source Graph Database: Nebula Graph.
 
 ## Data
 
