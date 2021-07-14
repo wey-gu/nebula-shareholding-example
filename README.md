@@ -8,7 +8,7 @@ This is a demo of Shareholding Breakthrough with Distributed open-source Graph D
 
 ![modeling](./images/modeling.png)
 
-There are various kinds of relationships when we checking companies' shareholding breakthrough, here let's simplify it with only two kind of entities: person and corp:
+There are various kinds of relationships when we checking companies' shareholding breakthrough, here let's simplify it with only two kind of entities: person and corp, and with following relationship types.
 
 - `person` can hold a `corp` in `{share} %`
 - `person` can be relative with another `person`
