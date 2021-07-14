@@ -1,0 +1,177 @@
+version: v2
+description: nebula shareholding relationship data importing
+removeTempFiles: false
+clientSettings:
+  retry: 3
+  concurrency: 2 # number of graph clients
+  channelBufferSize: 1
+  space: shareholding
+  connection:
+    user: root
+    password: nebula
+    address: graphd1:9669,graphd2:9669
+  postStart:
+    commands: |
+      UPDATE CONFIGS storage:wal_ttl=3600;
+      UPDATE CONFIGS storage:rocksdb_column_family_options = { disable_auto_compactions = true };
+      DROP SPACE IF EXISTS shareholding;
+      CREATE SPACE IF NOT EXISTS shareholding(partition_num=5, replica_factor=1, vid_type=FIXED_STRING(10));
+      USE shareholding;
+      CREATE TAG person(name string);
+      CREATE TAG corp(name string);
+      CREATE EDGE role_as(role string);
+      CREATE EDGE is_branch_of();
+      CREATE EDGE hold_share(share float);
+      CREATE EDGE reletive_with(degree int);
+    afterPeriod: 8s
+  preStop:
+    commands: |
+      UPDATE CONFIGS storage:rocksdb_column_family_options = { disable_auto_compactions = false };
+      UPDATE CONFIGS storage:wal_ttl=86400;
+logPath: ./err/test.log
+files:
+
+  - path: ./person.csv
+    failDataPath: ./err/person.csv
+    batchSize: 2
+    inOrder: true
+    type: csv
+    csv:
+      withHeader: false
+      withLabel: false
+    schema:
+      type: vertex
+      vertex:
+        vid:
+          index: 0
+        tags:
+          - name: person
+            props:
+              - name: name
+                type: string
+                index: 1
+
+  - path: ./corp.csv
+    failDataPath: ./err/corp.csv
+    batchSize: 2
+    inOrder: true
+    type: csv
+    csv:
+      withHeader: false
+      withLabel: false
+    schema:
+      type: vertex
+      vertex:
+        vid:
+          index: 0
+        tags:
+          - name: corp
+            props:
+              - name: name
+                type: string
+                index: 1
+  - path: ./person_corp_role.csv
+    failDataPath: ./err/person_corp_role.csv
+    batchSize: 2
+    inOrder: false
+    type: csv
+    csv:
+      withHeader: false
+      withLabel: false
+    schema:
+      type: edge
+      edge:
+        name: role_as
+        withRanking: false
+        srcVID:
+          index: 0
+        dstVID:
+          index: 1
+        props:
+          - name: role
+            type: string
+            index: 2
+
+  - path: ./corp_rel.csv
+    failDataPath: ./err/corp_rel.csv
+    batchSize: 2
+    inOrder: false
+    type: csv
+    csv:
+      withHeader: false
+      withLabel: false
+    schema:
+      type: edge
+      edge:
+        name: is_branch_of
+        withRanking: false
+        srcVID:
+          index: 0
+        dstVID:
+          index: 1
+
+  - path: ./corp_share.csv
+    failDataPath: ./err/corp_share.csv
+    batchSize: 2
+    inOrder: false
+    type: csv
+    csv:
+      withHeader: false
+      withLabel: false
+    schema:
+      type: edge
+      edge:
+        name: hold_share
+        withRanking: false
+        srcVID:
+          index: 0
+        dstVID:
+          index: 1
+        props:
+          - name: share
+            type: float
+            index: 2
+
+  - path: ./person_corp_share.csv
+    failDataPath: ./err/person_corp_share.csv
+    batchSize: 2
+    inOrder: false
+    type: csv
+    csv:
+      withHeader: false
+      withLabel: false
+    schema:
+      type: edge
+      edge:
+        name: hold_share
+        withRanking: false
+        srcVID:
+          index: 0
+        dstVID:
+          index: 1
+        props:
+          - name: share
+            type: float
+            index: 2
+
+  - path: ./person_rel.csv
+    failDataPath: ./err/person_rel.csv
+    batchSize: 2
+    inOrder: false
+    type: csv
+    csv:
+      withHeader: false
+      withLabel: false
+    schema:
+      type: edge
+      edge:
+        name: reletive_with
+        withRanking: false
+        srcVID:
+          index: 0
+        dstVID:
+          index: 1
+        props:
+          - name: degree
+            type: int
+            index: 2

@@ -1,0 +1,3 @@
+data/*.csv
+data/err/*.csv
+.DS_Store
