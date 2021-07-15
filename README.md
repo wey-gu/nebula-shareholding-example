@@ -49,7 +49,7 @@ total 1688
 
 ### Data Import
 
-With those data in `.csv` files, we can easily import them into a Nebula Graph Cluster with the help of [Nebula-Importer](https://github.com/vesoft-inc/nebula-importer).
+With those data in `.csv` files, we can easily import them into a Nebula Graph Cluster with the help of [Nebula-Importer](https://github.com/vesoft-inc/nebula-importer). `nebula-importer.yaml` in this repo describes rules and configurations on how this import will be done by the importer.
 
 For Nebula Graph Database, plesae refer to [Doc](https://docs.nebula-graph.io/) , [Doc-CN](https://docs.nebula-graph.com.cn/) to deploy on any Linux Servers, for study and test, you can run it via Docker following the Quick Start Chapter of the documentation.
 
