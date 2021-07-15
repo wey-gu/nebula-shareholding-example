@@ -61,7 +61,7 @@ For Nebula-Importer, if you already have Docker env, you can run it as the follo
 # put generated data & nebula-importor.yaml to nebula-importer server
 $ scp -r data nebula_graph_host:~
 $ scp nebula-importer.yaml data nebula_graph_host:~/data
-$ ssh <nebula_graph_host:>
+$ ssh nebula_graph_host
 $ ls -l ${HOME}/data
 total 756
 -rw-r--r--. 1 wei.gu wei.gu  23941 Jul 14 05:44 corp.csv
@@ -73,7 +73,7 @@ total 756
 -rw-r--r--. 1 wei.gu wei.gu 322965 Jul 14 05:44 person_corp_share.csv
 -rw-r--r--. 1 wei.gu wei.gu  17689 Jul 14 05:44 person_rel.csv
 
-# import data into our 
+# import data into our nebula graph database
 $ docker run --rm -ti \
     --network=nebula-docker-compose_nebula-net \
     -v ${HOME}/data/nebula-importer.yaml:/root/nebula-importer.yaml \
