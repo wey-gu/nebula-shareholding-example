@@ -33,7 +33,7 @@ files:
 
   - path: ./person.csv
     failDataPath: ./err/person.csv
-    batchSize: 2
+    batchSize: 32
     inOrder: true
     type: csv
     csv:
@@ -53,7 +53,7 @@ files:
 
   - path: ./corp.csv
     failDataPath: ./err/corp.csv
-    batchSize: 2
+    batchSize: 32
     inOrder: true
     type: csv
     csv:
@@ -72,7 +72,7 @@ files:
                 index: 1
   - path: ./person_corp_role.csv
     failDataPath: ./err/person_corp_role.csv
-    batchSize: 2
+    batchSize: 32
     inOrder: false
     type: csv
     csv:
@@ -94,7 +94,7 @@ files:
 
   - path: ./corp_rel.csv
     failDataPath: ./err/corp_rel.csv
-    batchSize: 2
+    batchSize: 32
     inOrder: false
     type: csv
     csv:
@@ -112,7 +112,7 @@ files:
 
   - path: ./corp_share.csv
     failDataPath: ./err/corp_share.csv
-    batchSize: 2
+    batchSize: 32
     inOrder: false
     type: csv
     csv:
@@ -134,7 +134,7 @@ files:
 
   - path: ./person_corp_share.csv
     failDataPath: ./err/person_corp_share.csv
-    batchSize: 2
+    batchSize: 32
     inOrder: false
     type: csv
     csv:
@@ -156,7 +156,7 @@ files:
 
   - path: ./person_rel.csv
     failDataPath: ./err/person_rel.csv
-    batchSize: 2
+    batchSize: 32
     inOrder: false
     type: csv
     csv:
