@@ -19,6 +19,10 @@ clientSettings:
       USE shareholding;
       CREATE TAG person(name string);
       CREATE TAG corp(name string);
+      Create TAG INDEX person_name on person(name(8))
+      REBUILD TAG INDEX person_name;
+      Create TAG INDEX corp_name on corp(name(8))
+      REBUILD TAG INDEX corp_name;
       CREATE EDGE role_as(role string);
       CREATE EDGE is_branch_of();
       CREATE EDGE hold_share(share float);
@@ -31,7 +35,7 @@ clientSettings:
 logPath: ./err/test.log
 files:
 
-  - path: ./person.csv
+  - path: ./data_sample/person.csv
     failDataPath: ./err/person.csv
     batchSize: 32
     inOrder: true
@@ -51,7 +55,7 @@ files:
                 type: string
                 index: 1
 
-  - path: ./corp.csv
+  - path: ./data_sample/corp.csv
     failDataPath: ./err/corp.csv
     batchSize: 32
     inOrder: true
@@ -70,7 +74,7 @@ files:
               - name: name
                 type: string
                 index: 1
-  - path: ./person_corp_role.csv
+  - path: ./data_sample/person_corp_role.csv
     failDataPath: ./err/person_corp_role.csv
     batchSize: 32
     inOrder: false
@@ -92,7 +96,7 @@ files:
             type: string
             index: 2
 
-  - path: ./corp_rel.csv
+  - path: ./data_sample/corp_rel.csv
     failDataPath: ./err/corp_rel.csv
     batchSize: 32
     inOrder: false
@@ -110,7 +114,7 @@ files:
         dstVID:
           index: 1
 
-  - path: ./corp_share.csv
+  - path: ./data_sample/corp_share.csv
     failDataPath: ./err/corp_share.csv
     batchSize: 32
     inOrder: false
@@ -132,7 +136,7 @@ files:
             type: float
             index: 2
 
-  - path: ./person_corp_share.csv
+  - path: ./data_sample/person_corp_share.csv
     failDataPath: ./err/person_corp_share.csv
     batchSize: 32
     inOrder: false
@@ -154,7 +158,7 @@ files:
             type: float
             index: 2
 
-  - path: ./person_rel.csv
+  - path: ./data_sample/person_rel.csv
     failDataPath: ./err/person_rel.csv
     batchSize: 32
     inOrder: false
