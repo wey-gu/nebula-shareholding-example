@@ -12,8 +12,6 @@ clientSettings:
     address: graphd1:9669,graphd2:9669
   postStart:
     commands: |
-      UPDATE CONFIGS storage:wal_ttl=3600;
-      UPDATE CONFIGS storage:rocksdb_column_family_options = { disable_auto_compactions = true };
       DROP SPACE IF EXISTS shareholding;
       CREATE SPACE IF NOT EXISTS shareholding(partition_num=5, replica_factor=1, vid_type=FIXED_STRING(10));
       USE shareholding;
@@ -28,10 +26,6 @@ clientSettings:
       CREATE EDGE hold_share(share float);
       CREATE EDGE reletive_with(degree int);
     afterPeriod: 8s
-  preStop:
-    commands: |
-      UPDATE CONFIGS storage:rocksdb_column_family_options = { disable_auto_compactions = false };
-      UPDATE CONFIGS storage:wal_ttl=86400;
 logPath: ./err/test.log
 files:
 
