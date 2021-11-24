@@ -17,10 +17,8 @@ clientSettings:
       USE shareholding;
       CREATE TAG person(name string);
       CREATE TAG corp(name string);
-      CREATE TAG INDEX person_name on person(name(20))
-      REBUILD TAG INDEX person_name;
-      CREATE TAG INDEX corp_name on corp(name(20))
-      REBUILD TAG INDEX corp_name;
+      CREATE TAG INDEX person_name on person(name(20));
+      CREATE TAG INDEX corp_name on corp(name(20));
       CREATE EDGE role_as(role string);
       CREATE EDGE is_branch_of();
       CREATE EDGE hold_share(share float);
