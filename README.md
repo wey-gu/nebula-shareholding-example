@@ -2,6 +2,8 @@
 
 This is a demo of Shareholding Breakthrough with Distributed open-source Graph Database: Nebula Graph.
 
+> Generated dataset in two size(1K and 1M) is now ready in [Kaggle](https://www.kaggle.com/littlewey/nebula-graph-shareolding-dataset)
+
 ## Data
 
 ### Data Modeling
@@ -194,7 +196,7 @@ Step3, after click Expand, you will see all quried relations with `c_132` the `C
 
 - Python Faker https://github.com/joke2k/faker/
 - pydbgen https://github.com/tirthajyoti/pydbgen
-- Nebula Graph https://github.com/vesoft-inc/nebula-graph
+- Nebula Graph https://github.com/vesoft-inc/nebula
 
 
 
