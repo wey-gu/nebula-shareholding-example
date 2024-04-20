@@ -192,6 +192,12 @@ Step3, after click Expand, you will see all quried relations with `c_132` the `C
 
 ![studio_explore_2](./images/studio_explore_2.png)
 
+#### In Gephi Lite:
+
+https://github.com/wey-gu/nebula-shareholding-example/assets/1651790/c69df81b-994e-4081-8026-e49744663dd7
+
+See https://graph-hub.siwei.io/en/latest/datasets/shareholding/
+
 ## Thanks to Upstream Projects ❤️
 
 - Python Faker https://github.com/joke2k/faker/
